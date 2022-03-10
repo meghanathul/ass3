@@ -18,20 +18,23 @@ export class Form extends Component {
    }
 
 
-    onChange = (event) => {
+    handleChange = (event) => {
+        console.log('onchange')
         this.setState({
             [event.target.name]:event.target.value
         });
     }
 
 
-    FormClick = () => {
+    onFormClick = () => {
+        console.log('form click')
         this.setState({clicked:!this.state.clicked})
     };
+    //when we click on back button this function is called
 
-    onSubmit = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
-        console.log("done")
+        console.log("submited")
         let temp_obj = {
             name:this.state.name,
             dept:this.state.dept,
@@ -53,24 +56,24 @@ export class Form extends Component {
 
     render(){
         return(
-            <div id="form-conatiner">
+            <div id="form">
                 {!this.state.clicked ? 
                 <>
                     <h1>EMPLOYEE FEEDBACK FORM</h1>
                     <form>
-                        <label className="form_elements" htmlFor="name">Name :</label>
-                        <input className="input_box form_elements" type="text" id="name" value={this.state.value} name="name" onChange={this.onChange}/>
+                        <label htmlFor="name">Name :</label>
+                        <input  type="text" id="name" value={this.state.value} name="name" handleChange={this.handleChange}/>
                         <br />
-                        <label className="form_elements" htmlFor="dept">Department :</label>
-                        <input className="input_box form_elements" type="text" name="dept" value={this.state.value} id="dept" onChange={this.onChange}/>
+                        <label  htmlFor="dept">Department :</label>
+                        <input  type="text" name="dept" value={this.state.value} id="dept" handleChange={this.handleChange}/>
                         <br />
-                        <label className="form_elements" htmlFor="rate">Rating :</label>
-                        <input className="input_box form_elements" type="number" id="rate" value={this.state.value} name="rating" onChange={this.onChange}/>
+                        <label  htmlFor="rate">Rating :</label>
+                        <input type="number" id="rate" value={this.state.value} name="rating" handleChange={this.handleChange}/>
                         <br />
-                        <button className="dynamic_button" type="submit" onClick={this.onSubmit.bind(this)}>Submit</button>
+                        <button  type="submit" onClick={this.handleSubmit.bind(this)}>Submit</button>
                     </form>
                 </> : 
-                    <Employee data={this.state.user} backFunc={this.FormClick} />
+                    <Employee data={this.state.user} backFunc={this.onFormClick} />
                     }
             </div>
         )

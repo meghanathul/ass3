@@ -8,18 +8,18 @@ class Employee extends Component{
     render(){
         return (<>
             <h1>EMPLOYEE FEEDBACK FORM</h1>
-            <div id="container">
+            <div id="alldata">
                 {this.props.data.map( (element) => {
                     
                     return (
                         <div id="data">
-                            <h3>{element.count} : {element.name} || {element.dept} || {element.rating} </h3>
+                            <h3>{element.addemp} : {element.name} || {element.dept} || {element.rating} </h3>
                         </div>
                     );
                     })
                 }
             </div>
-            <button className="back-button" onClick={this.props.backFunc}>Go back</button>
+            <button onClick={this.props.backFunc}>Go back</button>
         </>
     )
     }
